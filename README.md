@@ -74,11 +74,15 @@ Token JWT expire - 5min (can be edited)
  
 ## To install and run project commands
 
-Install
+1. Install
 
 ```npm ci``` 
 
-RUN server
+2. Build
+
+```npm run build:dev```  
+
+3. RUN server
 
 ```npm run start:dev```  
 
