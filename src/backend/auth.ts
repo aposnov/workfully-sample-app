@@ -27,12 +27,19 @@ export function generateToken(data: any): string {
 
 export function authenticateToken(req: Request, res: Response, next: NextFunction) {
   const authHeader = req.header('Authorization');
+  const authCookie = req.cookies.access_token;
 
-  if (!authHeader) {
+  let token: any;
+
+  if (!authHeader && !authCookie) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
-  const token = req.header('Authorization')?.replace('Bearer ', '');
+  token = req.header('Authorization')?.replace('Bearer ', '');
+
+  if (!token) {
+    token = authCookie;
+  }
 
   if (!token) {
     return res.status(401).json({ error: 'Unauthorized' });
@@ -40,8 +47,6 @@ export function authenticateToken(req: Request, res: Response, next: NextFunctio
 
   jwt.verify(token, 'bcnWorkfully31337', (err: any, decoded: any) => {
 
-    console.log(err);
-    
     if (err) {
       console.log('Token verification failed:', err);
       return res.status(401).json({ error: 'Invalid token' });

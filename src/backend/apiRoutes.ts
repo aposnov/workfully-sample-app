@@ -82,7 +82,9 @@ export function configureApiRoutes(app: Express) {
         });
 
         // Log in success
-        res.json({ token });
+        res.cookie('access_token', token, {
+          httpOnly: true
+        }).status(200).json({ token: token });
 
       } catch (error) {
         res.status(500).json({ error: 'Internal server error db' });
@@ -130,6 +132,7 @@ export function configureApiRoutes(app: Express) {
 
   // Logout endpoint
   app.post('/api/logout', authenticateToken, async (req: Request, res: Response) => {
+  
     try {
 
       const userEmail = req.customData

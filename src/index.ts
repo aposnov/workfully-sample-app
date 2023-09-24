@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from 'body-parser';
 import path from "path";
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 import { User, UserRepoTokens } from "./backend/db";
 import { configureApiRoutes } from "./backend/apiRoutes";
 import { sequelize } from './backend/db';
@@ -21,6 +22,7 @@ declare module 'express' {
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "../public")));
 
 //load routes
