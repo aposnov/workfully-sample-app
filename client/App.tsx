@@ -4,7 +4,7 @@ import LoginForm from "./LoginForm";
 const App: React.FC = () => {
   return (
     <div>
-      <h1>Worfully Sample App</h1>
+      <h1>Workfully Sample App</h1>
       <p>You can try register new use here</p>
       <LoginForm />
     </div>

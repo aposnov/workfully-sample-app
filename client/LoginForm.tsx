@@ -3,12 +3,16 @@ import React, { useState } from 'react';
 interface LoginFormData {
   email: string;
   password: string;
+  firstName: string;
+  lastName: string;
 }
 
 const LoginForm: React.FC = () => {
   const [formData, setFormData] = useState<LoginFormData>({
     email: '',
     password: '',
+    firstName: '',
+    lastName: ''
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +27,7 @@ const LoginForm: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('/api/login', {
+      const response = await fetch('/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,7 +47,6 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <br/>
     <div>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
@@ -54,6 +57,28 @@ const LoginForm: React.FC = () => {
             id="email"
             name="email"
             value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="firstName">firstName:</label>
+          <input
+            type="firstName"
+            id="firstName"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="lastName">lastName:</label>
+          <input
+            type="lastName"
+            id="lastName"
+            name="lastName"
+            value={formData.lastName}
             onChange={handleChange}
             required
           />
