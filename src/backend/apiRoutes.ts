@@ -158,8 +158,9 @@ export function configureApiRoutes(app: Express) {
           },
         });
 
-        // Log out success
-        res.json({ message: 'Logged out successfully' });
+        res.cookie('access_token', '', {
+          httpOnly: true
+        }).status(200).json({ message: 'Logged out successfully1' });
 
       } catch (error) {
         res.status(500).json({ error: 'Internal server error db' });
