@@ -1,4 +1,5 @@
 # workfully-sample-app
+![alt text](example.jpg)
 
 ## Project description
 
