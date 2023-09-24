@@ -21,10 +21,15 @@ I have added comments to all important parts of code
 ### ENV variables
 .env 
 SRV_PORT= port of server
+
 POSTGRES_DB = name of database
+
 POSTGRES_USER = username of database
+
 POSTGRES_PASSWORD = password of user database
+
 POSTGRES_HOST = host of database
+
 ACCESS_TOKEN_EXPIRE = '5m' 
 
 more data/variables can be moved into ENVs for prod use
