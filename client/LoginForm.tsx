@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 
 interface LoginFormData {
   email: string;
@@ -47,58 +51,61 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Registration</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
+    <Container>
+      <h1>Registration Form</h1>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3">
+          <Form.Label>Email:</Form.Label>
+          <Form.Control
             type="email"
-            id="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
             required
+            placeholder="name@example.com"
           />
-        </div>
-        <div>
-          <label htmlFor="firstName">firstName:</label>
-          <input
-            type="firstName"
-            id="firstName"
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>First Name:</Form.Label>
+          <Form.Control
+            type="text"
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
             required
+            placeholder="Jack"
           />
-        </div>
-        <div>
-          <label htmlFor="lastName">lastName:</label>
-          <input
-            type="lastName"
-            id="lastName"
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Last Name:</Form.Label>
+          <Form.Control
+            type="text"
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
             required
+            placeholder="Simpson"
           />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Password:</Form.Label>
+          <Form.Control
             type="password"
-            id="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
             required
           />
-        </div>
-        <div>
-          <button type="submit">Registration</button>
-        </div>
-      </form>
-    </div>
+        </Form.Group>
+
+        <Button type="submit" variant="primary">
+          Registration
+        </Button>
+      </Form>
+    </Container>
   );
 };
 
