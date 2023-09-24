@@ -74,9 +74,13 @@ Token JWT expire - 5min (can be edited)
  
 ## To install and run project commands
 
-**npm ci** - install
+Install
 
-**npm run start:dev** - RUN server
+```npm ci``` 
+
+RUN server
+
+```npm run start:dev```  
 
 ## Report testing
 Checked with FE app, by Postman and manually
