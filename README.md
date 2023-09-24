@@ -21,6 +21,8 @@ I have added comments to all important parts of code
 ### ENV variables
 .env 
 
+NODE_ENV = 'localtest' – this variable should be setted to allow work srv on 3000 port, if not it will be 0 (that means for unix use any port that available)
+
 SRV_PORT= port of server
 
 POSTGRES_DB = name of database
@@ -56,9 +58,9 @@ Token JWT expire - 5min (can be edited)
 
  **backend/bd.ts** - connection and communication with database (two tables User and UserRepoTokens)
 
- ### Tests
+ ### Unit Tests
 
- Tests – folder for tests
+ Tests – folder for tests /profile and /registration endpoints
 
   **basic.test.ts** – basic test to run and check server env
 

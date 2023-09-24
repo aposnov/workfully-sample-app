@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from 'body-parser';
 import path from "path";
-import dotenv from 'dotenv'; 
+import dotenv from 'dotenv';
 import { User, UserRepoTokens } from "./backend/db";
 import { configureApiRoutes } from "./backend/apiRoutes";
 import { sequelize } from './backend/db';
@@ -36,15 +36,21 @@ async function main() {
     //console.log(`Database was connected succesfully`);
 
     // Create DB Tables
-    await User.sync() 
+    await User.sync()
     await UserRepoTokens.sync()
     //console.log(`Database model – ok`);
 
     // Start server
-    app.listen(3000, 'proxyman.debug', () => {
-      //console.log(`App listening on port 3000`);
-    });
-  } catch(error) {
+    if (process.env.NODE_ENV == 'localtest') {
+      app.listen(3000, () => {
+        //console.log(`App listening on port 3000`);
+      });
+    } else {
+      app.listen(0, () => {
+        //console.log(`App unit test srv`);
+      });
+    }
+  } catch (error) {
     console.error('Database connection failed', error)
   }
 }
