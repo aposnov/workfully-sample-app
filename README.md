@@ -60,11 +60,11 @@ Token JWT expire - 5min (can be edited)
 
  Tests – folder for tests
 
- basic.test.ts – basic test to run and check server env
+  **basic.test.ts** – basic test to run and check server env
 
- registration.test.ts – registration endpoint tests
+  **registration.test.ts** – registration endpoint tests
 
- profile.test.ts – profile endpoint tests
+  **profile.test.ts** – profile endpoint tests
 
  **To run test please use command**
 

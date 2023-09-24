@@ -2,6 +2,11 @@ import { Express, Request, Response } from 'express';
 import { hashPassword, authenticateToken, comparePasswords, generateToken } from './auth';
 import { User, UserRepoTokens } from './db';
 
+function isValidEmail(email: string): boolean {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(email);
+}
+
 export function configureApiRoutes(app: Express) {
 
   // API
@@ -12,8 +17,15 @@ export function configureApiRoutes(app: Express) {
       const { email, firstName, lastName, password } = req.body;
 
       // Validate user input
-      if (!email || !firstName || !lastName || !password) {
+      if (!email || email.trim() === '' ||
+         !firstName || firstName.trim() === '' ||
+         !lastName || lastName.trim() === '' ||
+          !password || password.trim() === '') {
         return res.status(400).json({ error: 'All fields are required' });
+      }
+
+      if (!isValidEmail(email)) {
+        return res.status(400).json({ error: 'Looks like email field is incorrect' });
       }
 
       // Check if the user already exists
@@ -94,7 +106,7 @@ export function configureApiRoutes(app: Express) {
 
       const userToken = await UserRepoTokens.findOne({ where: { email: userEmail } });
       
-      if (!userToken?.token) {
+      if (!userToken) {
         return res.status(401).json({ error: 'Unauthorized' });
       }
 
@@ -117,18 +129,17 @@ export function configureApiRoutes(app: Express) {
 
 
   // Logout endpoint
-  app.post('/api/logout', async (req: Request, res: Response) => {
+  app.post('/api/logout', authenticateToken, async (req: Request, res: Response) => {
     try {
 
-      const { email } = req.body;
+      const userEmail = req.customData
 
-      // Validate user input
-      if (!email) {
-        return res.status(400).json({ error: 'All fields are required' });
+      if (!userEmail) {
+        return res.status(401).json({ error: 'Unauthorized' });
       }
 
       try {
-        const user = await User.findOne({ where: { email: email } });
+        const user = await User.findOne({ where: { email: userEmail } });
         if (!user) {
           return res.status(400).json({ error: 'User not found' });
         }
@@ -140,7 +151,7 @@ export function configureApiRoutes(app: Express) {
       try {
         await UserRepoTokens.update({ token: '' }, {
           where: {
-            email: email,
+            email: userEmail,
           },
         });
 

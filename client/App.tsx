@@ -5,7 +5,7 @@ const App: React.FC = () => {
   return (
     <div>
       <h1>Workfully Sample App</h1>
-      <p>You can try register new use here</p>
+      <p>You can register here</p>
       <LoginForm />
     </div>
   );

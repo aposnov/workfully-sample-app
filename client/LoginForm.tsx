@@ -48,7 +48,7 @@ const LoginForm: React.FC = () => {
 
   return (
     <div>
-      <h2>Login</h2>
+      <h2>Registration</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="email">Email:</label>
@@ -95,7 +95,7 @@ const LoginForm: React.FC = () => {
           />
         </div>
         <div>
-          <button type="submit">Login</button>
+          <button type="submit">Registration</button>
         </div>
       </form>
     </div>
