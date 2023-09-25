@@ -31,7 +31,7 @@ const App: React.FC = () => {
   return (
     <Container>
       <h1>Workfully Sample App</h1>
-      <p>Please choose section</p>
+      <p>Please choose section 1</p>
       <div>
         <button onClick={handleLoginClick}>Login</button>
         <button onClick={handleRegistrationClick}>Registration</button>

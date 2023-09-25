@@ -3,10 +3,9 @@ import bodyParser from 'body-parser';
 import path from "path";
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
-import { User, UserRepoTokens } from "./backend/db";
-import { configureApiRoutes } from "./backend/apiRoutes";
-import { sequelize } from './backend/db';
-import { configureBasicRoutes } from "./backend/basicRoutes";
+import { User, UserRepoTokens, sequelize } from "./controllers/db";
+import { configureApiRoutes } from "./controllers/apiRoutes";
+import { configureBasicRoutes } from "./controllers/basicRoutes";
 
 //env variables
 dotenv.config();
@@ -23,7 +22,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "../../public")));
 
 //load routes
 configureApiRoutes(app);
