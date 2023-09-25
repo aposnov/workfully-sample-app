@@ -91,13 +91,15 @@ Token JWT expire - 5min (can be edited)
  
 ## To install and run project commands
 
-1. Build FE | go to /src/frontend 
-```npm ci``
+1. Build FE | go to /src/frontend
+   
+```npm ci```
 
 ```npm run build:fe```  
 
-2. run Backend server | go to /src/backend 
-```npm ci``
+2. run Backend server | go to /src/backend
+   
+```npm ci```
 
 ```npm run start:be```  
 
