@@ -67,13 +67,17 @@ Token JWT expire - 5min (can be edited)
 
  **index.ts** - main file for server
 
- **src/backend/apiRoutes.ts** - all logic for API endpoits /register /login /profile /logout
+ **src/backend/controllers/apiRoutes.ts** - all logic for API endpoits /register /login /profile /logout
 
- **src/backend/basicRoutes.ts** - logic for fronted to run app and 404
+ **src/backend/controllers/basicRoutes.ts** - logic for fronted to run app and 404
 
- **src/backend/auth.ts** - logic to generate and verify JWT tokens
+ **src/backend/controllers/interfaces.ts** - models and interfaces
 
- **src/backend/bd.ts** - connection and communication with database (two tables User and UserRepoTokens)
+ **src/backend/controllers/bd.ts** - connection and communication with database (two tables User and UserRepoTokens)
+
+ **src/backend/helpers/authHelpers.ts** – helper to generate JWT tokens, compare passwords
+
+ **src/backend/middleware/auth.ts** – middleware to manage and validate JWT token
 
  ### Unit Tests
 

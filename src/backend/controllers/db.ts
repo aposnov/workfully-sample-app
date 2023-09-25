@@ -1,4 +1,5 @@
 import { Sequelize, DataTypes, Model } from 'sequelize';
+import { UserAttributes, UserModel, UserRepoTokensModel, UserRepoTokensAttributes } from './interfaces';
 import dotenv from 'dotenv'; 
 
 dotenv.config();
@@ -16,15 +17,6 @@ export const sequelize = new Sequelize({
 });
 
 // USER
-
-export interface UserAttributes {
-  email: string;
-  firstName: string;
-  lastName: string;
-  password: string;
-}
-
-export interface UserModel extends Model<UserAttributes>, UserAttributes {}
 
 export const User = sequelize.define<UserModel, UserAttributes>('User', {
   email: {
@@ -47,13 +39,6 @@ export const User = sequelize.define<UserModel, UserAttributes>('User', {
 });
 
 // USER TOKENS
-
-export interface UserRepoTokensAttributes {
-  token: string;
-  email: string;
-}
-
-export interface UserRepoTokensModel extends Model<UserRepoTokensAttributes>, UserRepoTokensAttributes {}
 
 export const UserRepoTokens = sequelize.define<UserRepoTokensModel, UserRepoTokensAttributes>('UserRepoTokens', {
       token: {

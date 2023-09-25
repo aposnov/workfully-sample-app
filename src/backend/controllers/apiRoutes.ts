@@ -1,5 +1,6 @@
 import { Express, Request, Response } from 'express';
-import { hashPassword, authenticateToken, comparePasswords, generateToken } from './auth';
+import { hashPassword, comparePasswords, generateToken } from '../helpers/authHelpers';
+import { authenticateToken } from '../middleware/auth';
 import { User, UserRepoTokens } from './db';
 
 function isValidEmail(email: string): boolean {
@@ -46,7 +47,7 @@ export function configureApiRoutes(app: Express) {
       // Add token to User Repo Tokens to manage it later
       await UserRepoTokens.create({ token, email });
 
-      res.json({ token });
+      res.json({ message: 'Registration successful', token: token });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal server error' });
@@ -84,7 +85,7 @@ export function configureApiRoutes(app: Express) {
         // Log in success
         res.cookie('access_token', token, {
           httpOnly: true
-        }).status(200).json({ token: token });
+        }).status(200).json({ message: 'Login successful' });
 
       } catch (error) {
         res.status(500).json({ error: 'Internal server error db' });
@@ -160,7 +161,7 @@ export function configureApiRoutes(app: Express) {
 
         res.cookie('access_token', '', {
           httpOnly: true
-        }).status(200).json({ message: 'Logged out successfully1' });
+        }).status(200).json({ message: 'Logged out successfuly' });
 
       } catch (error) {
         res.status(500).json({ error: 'Internal server error db' });
