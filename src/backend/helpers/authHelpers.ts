@@ -16,7 +16,7 @@ export async function comparePasswords(plainPassword: string, hashedPassword: st
 
 export function generateToken(data: any): string {
   // Token generation
-  const token = jwt.sign(data, 'bcnWorkfully31337', { expiresIn: process.env.ACCESS_TOKEN_EXPIRE || '5m' });
+  const token = jwt.sign(data, process.env.JWT_SECRET_KEY || 'secret', { expiresIn: process.env.ACCESS_TOKEN_EXPIRE || '5m' });
 
   // Encode the token as base64
   const base64Token = Buffer.from(token).toString('base64');

@@ -21,7 +21,7 @@ export function authenticateToken(req: Request, res: Response, next: NextFunctio
       return res.status(401).json({ error: 'Unauthorized' });
     }
   
-    jwt.verify(token, 'bcnWorkfully31337', (err: any, decoded: any) => {
+    jwt.verify(token, process.env.JWT_SECRET_KEY!, (err: any, decoded: any) => {
   
       if (err) {
         console.log('Token verification failed:', err);
