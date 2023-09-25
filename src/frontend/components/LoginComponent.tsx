@@ -8,9 +8,10 @@ interface LoginForm {
 
 interface ProfileProps {
     showRegistration: () => void;
+    showProfile: () => void;
 }
 
-const Login: React.FC<ProfileProps> = ({ showRegistration }) => {
+const Login: React.FC<ProfileProps> = ({ showRegistration, showProfile }) => {
     const [loginData, setLoginData] = useState<LoginForm>({
         email: '',
         password: '',
@@ -42,7 +43,7 @@ const Login: React.FC<ProfileProps> = ({ showRegistration }) => {
             });
 
             if (response.ok) {
-                // Successful login, redirect or perform other actions
+                showProfile()
             } else {
                 const errorData = await response.json();
                 console.error('Login error:', errorData.error);

@@ -13,7 +13,7 @@ interface ProfileProps {
     showLogin: () => void;
   }
 
-const ProfilePage: React.FC<ProfileProps> = ({ showLogin }) => {
+const ProfileComponent: React.FC<ProfileProps> = ({ showLogin }) => {
     const [user, setUser] = useState<UserProfile | null>(null);
     const [errorAuth, setErrorAuth] = useState<Boolean | null>(null);
 
@@ -86,4 +86,4 @@ const ProfilePage: React.FC<ProfileProps> = ({ showLogin }) => {
     );
 };
 
-export default ProfilePage;
+export default ProfileComponent;

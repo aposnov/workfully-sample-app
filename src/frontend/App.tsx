@@ -1,9 +1,10 @@
 import React from "react";
 import Container from 'react-bootstrap/Container';
-import RegistrationForm from "./RegistrationForm";
-import LoginForm from "./LoginForm";
+import RegistrationForm from "./components/RegistrationComponent";
+import LoginForm from "./components/LoginComponent";
+import ProfileComponent from "./components/ProfileComponent";
 import { useState } from "react";
-import ProfilePage from "./ProfilePage";
+
 
 const App: React.FC = () => {
   const [showLogin, setShowLogin] = useState(true);
@@ -40,9 +41,14 @@ const App: React.FC = () => {
 
       {showLogin && (
         <div>
-          <LoginForm showRegistration={function (): void {
-            handleRegistrationClick();
-          }} />
+          <LoginForm
+            showRegistration={function (): void {
+              handleRegistrationClick();
+            }
+            }
+            showProfile={function (): void {
+              handleProfileClick()
+            }} />
         </div>
       )}
 
@@ -50,13 +56,13 @@ const App: React.FC = () => {
         <div>
           <RegistrationForm showLogin={function (): void {
             handleLoginClick();
-          } } />
+          }} />
         </div>
       )}
 
       {showProfile && (
         <div>
-          <ProfilePage showLogin={function (): void {
+          <ProfileComponent showLogin={function (): void {
             handleLoginClick();
           }} />
         </div>
